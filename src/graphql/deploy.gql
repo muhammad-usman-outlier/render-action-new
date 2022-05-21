@@ -1,0 +1,10 @@
+query Deploy($id: String!) {
+  deploy(id: $id) {
+    id
+    status
+    server {
+      id
+      url
+    }
+  }
+}

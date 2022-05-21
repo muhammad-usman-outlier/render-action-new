@@ -1,13 +1,30 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Fetch and verify Render deploy'
+description: 'This action fetches Render deploy links from PR and verifies for a successful deployment of the deloyment preview'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  token:
+    description: 'GitHub Token'
     required: true
-    default: '1000'
+  render-email:
+    description: 'Render Email'
+    required: true
+  render-password:
+    description: 'Render Password'
+    required: true
+  sleep:
+    required: false
+    description: Sleep time between the render deployment success and setting the Github deployment as successful
+    default: '0'
+  retries:
+    required: false
+    description: 'Maximum number of retries trying to find the deployment. Note: Retries will be attempted every 5 seconds'
+    default: '50'
+  wait:
+    required: false
+    description: Sleep time between retries to find Render deployments statuses
+    default: '8000'
 outputs:
-  time: # output will be available to future steps
-    description: 'The current time after waiting'
+  preview-url:
+    description: 'Successful Render deploy preview url'
 runs:
   using: 'node16'
-  main: 'dist/index.js'
+  main: dist/index.js
