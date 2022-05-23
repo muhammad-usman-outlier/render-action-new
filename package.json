@@ -2,7 +2,7 @@
   "name": "javascript-action",
   "version": "1.0.0",
   "description": "JavaScript Action Template",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
     "prepare": "ncc build src/main.js -o dist --source-map --license licenses.txt",
     "test": "jest",

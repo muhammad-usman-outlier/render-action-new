@@ -3,7 +3,7 @@ import * as Github from '@actions/github'
 import {GraphQLClient} from 'graphql-request'
 import {getToken} from './constants'
 
-import {Deploy as RenderDeploy, getSdk} from './generated/sdk'
+import {getSdk} from './generated/sdk'
 import {wait} from './wait'
 
 const client = new GraphQLClient('https://api.render.com/graphql')
@@ -171,7 +171,3 @@ export async function updateDeployment(
 function getDeployUrl(deploy) {
   return `https://dashboard.render.com/web/${deploy.server.id}/deploys/${deploy.id}`
 }
-
-/*******************************************
- *** Main
- ******************************************/
