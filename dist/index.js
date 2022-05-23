@@ -59186,15 +59186,13 @@ async function getDeployInfo(serviceId, deployId) {
 }
 
 async function waitForDeploy(deployment, serviceId) {
-  core.info(`${JSON.stringify(deployment)}`)
+  core.info(deployment.status)
   switch (deployment?.status) {
     case 'build_in_progress': // Running#1
       core.info(`Deployment still running... ⏱`)
       await wait(~~core.getInput('wait'))
-      return waitForDeploy({
-        ...deployment,
-        render: await getDeployInfo(serviceId, deployment.id),
-      })
+      const deployStatus = await getDeployInfo(serviceId, deployment.id)
+      return waitForDeploy(deployStatus, serviceId)
     case 'live': // Live
       core.info(`Deployment ${deployment.id} is Live ✅`)
     case 3: // Succeeded

@@ -77,10 +77,8 @@ export async function waitForDeploy(deployment, serviceId) {
     case 'build_in_progress': // Running#1
       Core.info(`Deployment still running... ⏱`)
       await wait(~~Core.getInput('wait'))
-      return waitForDeploy({
-        ...deployment,
-        render: await getDeployInfo(serviceId, deployment.id),
-      })
+      const deployStatus = await getDeployInfo(serviceId, deployment.id)
+      return waitForDeploy(deployStatus, serviceId)
     case 'live': // Live
       Core.info(`Deployment ${deployment.id} is Live ✅`)
     case 3: // Succeeded
