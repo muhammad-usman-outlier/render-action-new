@@ -72,7 +72,7 @@ export async function getDeployInfo(serviceId, deployId) {
 }
 
 export async function waitForDeploy(deployment, serviceId) {
-  console.log(deployment, serviceId);
+  Core.info(JSON.stringify({ deployment, serviceId }))
   switch (deployment?.status) {
     case 'build_in_progress': // Running
       Core.info(`Deployment still running... ⏱`)
@@ -88,9 +88,7 @@ export async function waitForDeploy(deployment, serviceId) {
       Core.info(`Deployment ${deployment.id} succeeded ✅`)
       return
     case 'build_failed': // Failed
-      throw new Error(
-        `Deployment ${deployment.id} failed! ❌`
-      )
+      throw new Error(`Deployment ${deployment.id} failed! ❌`)
     case 'deactivated': // Cancelled
       Core.info(`Deployment ${deployment.id} canceled ⏹`)
       return
