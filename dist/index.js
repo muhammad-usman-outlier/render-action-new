@@ -59186,8 +59186,9 @@ async function getDeployInfo(serviceId, deployId) {
 }
 
 async function waitForDeploy(deployment, serviceId) {
+  core.info(`${JSON.stringify(deployment)}`)
   switch (deployment?.status) {
-    case 'build_in_progress': // Running
+    case 'build_in_progress': // Running#1
       core.info(`Deployment still running... ⏱`)
       await wait(~~core.getInput('wait'))
       return waitForDeploy({
@@ -59201,9 +59202,7 @@ async function waitForDeploy(deployment, serviceId) {
       core.info(`Deployment ${deployment.id} succeeded ✅`)
       return
     case 'build_failed': // Failed
-      throw new Error(
-        `Deployment ${deployment.id} failed! ❌`
-      )
+      throw new Error(`Deployment ${deployment.id} failed! ❌`)
     case 'deactivated': // Cancelled
       core.info(`Deployment ${deployment.id} canceled ⏹`)
       return
@@ -59228,7 +59227,7 @@ async function run() {
     await waitForDeploy(render, serviceId)
     core.setOutput('preview-url', preview)
   } catch (error) {
-    core.setFailed(error.message)
+    core.setFailed(`${JSON.stringify(error)}`)
   }
 }
 
