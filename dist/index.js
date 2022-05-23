@@ -59227,7 +59227,8 @@ async function run() {
     await waitForDeploy(render, serviceId)
     core.setOutput('preview-url', preview)
   } catch (error) {
-    core.setFailed(`${JSON.stringify(error)}`)
+    core.info(error)
+    core.setFailed(error.message)
   }
 }
 

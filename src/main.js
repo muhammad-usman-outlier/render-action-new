@@ -11,7 +11,8 @@ async function run() {
     await waitForDeploy(render, serviceId)
     Core.setOutput('preview-url', preview)
   } catch (error) {
-    Core.setFailed(`${JSON.stringify(error)}`)
+    Core.info(error)
+    Core.setFailed(error.message)
   }
 }
 
