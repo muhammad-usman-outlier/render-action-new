@@ -4,11 +4,8 @@ inputs:
   token:
     description: 'GitHub Token'
     required: true
-  render-email:
-    description: 'Render Email'
-    required: true
-  render-password:
-    description: 'Render Password'
+  RENDER_API_KEY:
+    description: 'Render API Key'
     required: true
   sleep:
     required: false
