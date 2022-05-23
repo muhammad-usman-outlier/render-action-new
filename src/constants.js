@@ -1,8 +1,7 @@
 import * as Core from '@actions/core'
 
 export const getToken = Core.getInput('token')
-export const getEmail = Core.getInput('render-email')
-export const getPassword = Core.getInput('render-password')
+export const renderApiKey = Core.getInput('RENDER_API_KEY')
 
 // RegEx Pattern for render Progress URL, [^!.] omits "." picked up from the url
 export const regexPattern =
