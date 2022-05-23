@@ -1,4 +1,4 @@
-import {getComment, getUrlFromComment} from '../src/utils'
+import {getComment, getUrlFromComment} from '../utils'
 
 describe('getComment', () => {
   it('should return undefined when there are no comments', () => {
