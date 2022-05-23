@@ -72,6 +72,7 @@ export async function getDeployInfo(serviceId, deployId) {
 }
 
 export async function waitForDeploy(deployment, serviceId) {
+  console.log(deployment, serviceId);
   switch (deployment?.status) {
     case 'build_in_progress': // Running
       Core.info(`Deployment still running... ⏱`)
